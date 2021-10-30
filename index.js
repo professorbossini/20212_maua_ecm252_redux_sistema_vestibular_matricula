@@ -102,6 +102,37 @@ const inicio = async () => {
                     }
                     break;
                 }
+                case 3:{
+                    const { cpf } = await prompts({
+                        type: 'text',
+                        name: 'cpf',
+                        message: 'Digite seu cpf'
+                    })
+                    const aluno = store.getState().historicoMatriculas.find(
+                        a => a.cpf === cpf
+                    )
+                    if (aluno) {
+                        console.log(`Seu status é: ${aluno.status}`)
+                    }
+                    else{
+                        console.log('Seu nome não consta na lista de matrículas')
+                    }
+                    break;
+                }
+                case 4: {
+                   const listaAprovados = store.getState().historicoVestibular.filter(
+                       aluno => aluno.nota >= 6
+                   ) 
+                   console.log(listaAprovados)
+                   break;
+                }
+                case 0:{
+                    console.log("Até mais")
+                    break;
+                }
+                default:
+                    console.log("Opção inválida")
+                    break;
             }
         }
         catch (err){
