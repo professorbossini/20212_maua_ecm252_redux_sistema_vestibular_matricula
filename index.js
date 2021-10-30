@@ -40,3 +40,30 @@ const historicoMatriculasReducer = (historicoMatriculasAtual = [], acao) =>{
     }
     return historicoMatriculasAtual
 }
+
+/*
+    {
+        historicoVestibular: [],
+        historicoMatriculas: []
+    }
+*/
+
+const todosOsReducers = redux.combineReducers({
+    historicoVestibular: historicoVestibularReducer,
+    historicoMatriculas: historicoMatriculasReducer
+})
+
+const store = redux.createStore(todosOsReducers)
+
+const inicio = async () => {
+    const menu = "1-Realizar vestibular\n2-Realizar matricula\n3-Visualizar meu status\n4-Visualizar a lista de aprovados\n0-Sair"
+    let resposta
+    do{
+        resposta = await prompts({ // {opcao: 2}
+            type: 'number',
+            name: 'opcao',
+            message: menu
+        })
+
+    }while (resposta.opcao !== 0);
+}
